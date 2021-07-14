@@ -4,7 +4,8 @@ const fs = require('fs');
 
 let strings = fs.readFileSync('./sourse.txt'),
     fibonacci = [],
-    newString = [];
+    filteredStrings = [],
+    reverseStrings = [];
 
 strings = strings.toString();
 strings = strings.split("\r\n");
@@ -15,8 +16,10 @@ if (strings.length > 0) fibonacci = createFibonacci(strings.length);
 for (let i = 0; i < fibonacci.length; i++) {
     let string = strings.filter((item, index) => index === fibonacci[i]);
     
-    if(typeof string[0] === 'string') newString[i] = string[0];
+    if(typeof string[0] === 'string') filteredStrings[i] = string[0];
 }
+
+filteredStrings.forEach(item => makeReverse(item));
 
 //  Fibonacci sequence
 function createFibonacci(length) {
@@ -32,6 +35,13 @@ function createFibonacci(length) {
     return arr;
 }
 
+// New method reverse
+function makeReverse(item) {
+    let string = '';
 
+    for (let i = item.length - 1; i >= 0; i--) string += item[i];
 
-console.log(newString)
+    reverseStrings.push(string);
+}
+
+console.log(reverseStrings)
