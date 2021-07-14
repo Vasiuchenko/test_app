@@ -5,7 +5,8 @@ const fs = require('fs');
 let strings = fs.readFileSync('./sourse.txt'),
     fibonacci = [],
     filteredStrings = [],
-    reverseStrings = [];
+    reverseStrings = [],
+    data = '';
 
 strings = strings.toString();
 strings = strings.split("\r\n");
@@ -44,4 +45,11 @@ function makeReverse(item) {
     reverseStrings.push(string);
 }
 
-console.log(reverseStrings)
+console.log(reverseStrings);
+data = reverseStrings.join('\r\n');
+console.log(data);
+
+fs.writeFile('output.txt', data, function (err) {
+    if (err) return console.log(err);
+    console.log('create new file');
+  });
